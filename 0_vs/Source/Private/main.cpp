@@ -6,15 +6,21 @@
 // Resource file
 #include "../../Resources/Resources/MainResources.h"
 
-// Global cariables
-HINSTANCE hInst;
-HACCEL hAccelTable;
+// DX bridge
+#include "DirectXRenderer.h"
 
 // Forward declarations
 ATOM				MyRegisterClass();
 BOOL				InitInstance(int);
 LRESULT CALLBACK	WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK	About(HWND, UINT, WPARAM, LPARAM);
+
+// Global variables
+HINSTANCE hInst;
+HACCEL hAccelTable;
+HWND hWnd;
+
+DirectXRenderer Renderer;
 
 int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE hPrevInstance,
@@ -32,6 +38,14 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 		return FALSE;
 	}
 
+	// DX Things
+	Renderer.AddVertex(SVertex(0.25f, 0.25f, 1.f, 1.0f, 0.0f, 0.0f, 1.f));
+	Renderer.AddVertex(SVertex(0.25f, 0.75f, 1.f, 0.0f, 0.0f, 1.0f, 1.f));
+	Renderer.AddVertex(SVertex(0.75f, 0.25f, 1.f, 0.0f, 1.0f, 0.0f, 1.f));
+	Renderer.AddVertex(SVertex(0.75f, 0.75f, 1.f, 1.0f, 1.0f, 1.0f, 1.f));
+	Renderer.Init(&hWnd);
+	Renderer.Render();
+
 	hAccelTable = LoadAccelerators(hInst, MAKEINTRESOURCE("PR210_3DENGINE"));
 
 	// Main message loop:
@@ -40,6 +54,7 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 	{
 		if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
 		{
+			Renderer.Render();
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
 		}
@@ -78,9 +93,7 @@ ATOM MyRegisterClass()
 /// <returns>Returns whether or not <a href="https://msdn.microsoft.com/en-us/library/windows/desktop/ms632679%28v=vs.85%29.aspx">CreateWindow()</a> succeeded</returns>
 BOOL InitInstance(int nCmdShow)
 {
-   HWND hWnd;
-
-   hWnd = CreateWindow(L"PR210_3DENGINE", L"Window", WS_OVERLAPPEDWINDOW,
+	hWnd = CreateWindow(L"PR210_3DENGINE", L"Window", WS_OVERLAPPEDWINDOW,
       CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, NULL, NULL, hInst, NULL);
 
    if (!hWnd)

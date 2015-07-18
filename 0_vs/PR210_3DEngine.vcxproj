@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Private\DirectXRenderer.cpp" />
     <ClCompile Include="Source\Private\main.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
     </ClCompile>
@@ -20,6 +21,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Resources\Resources\MainResources.h" />
+    <ClInclude Include="Source\Public\DirectXRenderer.h" />
     <ClInclude Include="Source\Public\Resource.h" />
     <ClInclude Include="Source\Public\stdafx.h" />
     <ClInclude Include="Source\Public\targetver.h" />
@@ -30,6 +32,9 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resources\MainResources.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Shader\Shaders.shader" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{E70C1727-6923-4796-BEAD-3A5418824E69}</ProjectGuid>
@@ -58,12 +63,14 @@
     <Import Project="Properties\PublicHeader.props" />
     <Import Project="Properties\Intermediate.props" />
     <Import Project="Properties\Build.props" />
+    <Import Project="Properties\DirectX_x86.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="Properties\PublicHeader.props" />
     <Import Project="Properties\Intermediate.props" />
     <Import Project="Properties\Build.props" />
+    <Import Project="Properties\DirectX_x86.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
