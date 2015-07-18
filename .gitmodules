@@ -1,0 +1,3 @@
+[submodule "0_vs/Properties"]
+	path = 0_vs/Properties
+	url = https://github.com/ViMaSter/propertysheets.git
