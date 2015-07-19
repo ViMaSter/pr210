@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Private\DirectX10Renderer.cpp" />
     <ClCompile Include="Source\Private\DirectXRenderer.cpp" />
     <ClCompile Include="Source\Private\main.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -21,6 +22,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Resources\Resources\MainResources.h" />
+    <ClInclude Include="Source\Public\DirectX10Renderer.h" />
     <ClInclude Include="Source\Public\DirectXRenderer.h" />
     <ClInclude Include="Source\Public\Resource.h" />
     <ClInclude Include="Source\Public\stdafx.h" />
