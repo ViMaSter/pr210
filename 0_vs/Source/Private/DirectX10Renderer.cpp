@@ -37,7 +37,6 @@ bool DirectX10Renderer::Init(HWND* windowPointer) {
 	DXGI_SWAP_CHAIN_DESC swapChainDescription;
 
 	D3D_FEATURE_LEVEL featureLevels[1] = { D3D_FEATURE_LEVEL::D3D_FEATURE_LEVEL_10_0 };
-	D3D_FEATURE_LEVEL succededFeatureLevel;
 
 	tmpResult = D3D10CreateDevice(NULL, D3D10_DRIVER_TYPE::D3D10_DRIVER_TYPE_HARDWARE, NULL,
 		D3D10_CREATE_DEVICE_SINGLETHREADED | D3D10_CREATE_DEVICE_BGRA_SUPPORT, D3D10_SDK_VERSION, &this->device);
@@ -143,8 +142,8 @@ bool DirectX10Renderer::Init(HWND* windowPointer) {
 
 	tmpResult = this->device->CreateDepthStencilView(depthStencilBuffer, 0, &this->depthStencilBufferView);
 
-	viewPort.Width = (float)1280;
-	viewPort.Height = (float)720;
+	viewPort.Width = 1280;
+	viewPort.Height = 720;
 	viewPort.MinDepth = 0.0f;
 	viewPort.MaxDepth = 1.0f;
 	viewPort.TopLeftX = 0;
@@ -174,8 +173,8 @@ bool DirectX10Renderer::Render() {
 }
 
 void DirectX10Renderer::AddVertex(SVertex v) {
-	if (CurrentState == DirectX10Renderer::State::NOT_READY) {
-		CurrentState = DirectX10Renderer::State::VERTICES_ADDED;
+	if (CurrentState == State::NOT_READY) {
+		CurrentState = State::VERTICES_ADDED;
 		Vertices.clear();
 	}
 

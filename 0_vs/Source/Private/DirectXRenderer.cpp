@@ -208,8 +208,8 @@ bool DirectXRenderer::Render() {
 }
 
 void DirectXRenderer::AddVertex(SVertex v) {
-	if (CurrentState == DirectXRenderer::State::NOT_READY) {
-		CurrentState = DirectXRenderer::State::VERTICES_ADDED;
+	if (CurrentState == State::NOT_READY) {
+		CurrentState = State::VERTICES_ADDED;
 		Vertices.clear();
 	}
 
