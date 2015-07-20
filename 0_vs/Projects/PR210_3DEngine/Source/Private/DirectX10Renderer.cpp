@@ -16,7 +16,7 @@ void DirectX10Renderer::ErrorHandler(int ID) {
 
 bool DirectX10Renderer::Init(HWND* windowPointer) {
 	// Set object state
-	CurrentState = DirectX10Renderer::State::INITIALIZED;
+	CurrentState = State::INITIALIZED;
 
 	// Temporary result value
 	HRESULT tmpResult;

@@ -55,9 +55,6 @@
     <Image Include="Resources\App.ico">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="App.ico">
-      <Filter>Resource Files</Filter>
-    </Image>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resources\MainResources.rc">
