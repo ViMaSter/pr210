@@ -1,0 +1,4 @@
+LIBRARY "Framework.Renderer.DX11Renderer.dll"
+EXPORTS
+CreateRenderer
+DeleteRenderer

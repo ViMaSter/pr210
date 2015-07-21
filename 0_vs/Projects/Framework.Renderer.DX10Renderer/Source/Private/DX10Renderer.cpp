@@ -1,21 +1,41 @@
 #pragma once
 
-#include "Renderer.h"
+#include "IRenderer.h"
 
 namespace Framework {
-	class DX10Renderer : public Renderer {
-		DX10Renderer() {
+	namespace Renderer {
+		namespace DX10Renderer {
+			class Renderer : public IRenderer {
+			public:
+				Renderer() {
+					CurrentRendererType = Framework::Renderer::Types::DirectX10;
+				}
+				~Renderer() {
+					
+				}
 
-		}
-		~DX10Renderer() {
-			Renderer::~Renderer();
-		}
+				virtual void Begin(int ClearColor) {
+					// Pre draw
+				}
+				virtual void End() {
+					// = Draw() + Present()
+				}
+			};
 
-		virtual void Begin(int ClearColor) {
-			// Pre draw
+			IRenderer* CreateRenderer(IRenderer** destination) {
+				*destination = new Renderer();
+
+				return *destination;
+			}
+
+			void DeleteRenderer(IRenderer** origin) {
+				if (*origin != nullptr) {
+					Renderer* originalPointer = (Renderer*)*origin;
+					delete originalPointer;
+					*origin = 0;
+				}
+			}
 		}
-		virtual void End() {
-			// = Draw() + Present()
-		}
-	};
+	}
+
 }

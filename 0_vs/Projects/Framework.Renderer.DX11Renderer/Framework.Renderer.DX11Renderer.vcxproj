@@ -16,13 +16,16 @@
   <ItemGroup>
     <ClInclude Include="Source\Public\DX11Renderer.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Definitions.def" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{1FCB4597-E2D1-4866-8AD4-34590480E29A}</ProjectGuid>
     <RootNamespace>FrameworkRendererDX11Renderer</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
@@ -41,7 +44,7 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\Properties\PublicHeader.props" />
     <Import Project="..\..\Properties\Intermediate.props" />
-    <Import Project="..\..\Properties\Build.props" />
+    <Import Project="..\Framework.Core\Properties\Build.props" />
     <Import Project="..\..\Properties\DirectX_x86.props" />
     <Import Project="..\..\Properties\WindowsSDK.props" />
     <Import Project="..\Framework.Core\Properties\Framework.props" />
@@ -50,7 +53,7 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\Properties\PublicHeader.props" />
     <Import Project="..\..\Properties\Intermediate.props" />
-    <Import Project="..\..\Properties\Build.props" />
+    <Import Project="..\Framework.Core\Properties\Build.props" />
     <Import Project="..\..\Properties\DirectX_x86.props" />
     <Import Project="..\..\Properties\WindowsSDK.props" />
     <Import Project="..\Framework.Core\Properties\Framework.props" />
@@ -65,6 +68,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ModuleDefinitionFile>Resources/Definitions.def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

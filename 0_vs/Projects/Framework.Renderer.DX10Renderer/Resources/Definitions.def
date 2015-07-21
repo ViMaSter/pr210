@@ -1,0 +1,4 @@
+LIBRARY "Framework.Renderer.DX10Renderer.dll"
+EXPORTS
+CreateRenderer
+DeleteRenderer

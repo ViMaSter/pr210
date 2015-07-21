@@ -1,15 +1,19 @@
 #include <stdio.h>
 
-#include "Renderer.h"
+#include "IRenderer.h"
 
 #pragma comment(lib, "Framework.Core.lib")
 
-Framework::Renderer* currentRenderer;
+Framework::Renderer::IRenderer* currentRenderer;
 
 void main() {
 	printf("a");
-	Framework::Renderer::CreateRenderer(&currentRenderer, Framework::Renderer::DirectX10);
+	Framework::Renderer::CreateRenderer(&currentRenderer, Framework::Renderer::Types::DirectX10);
 	printf("b");
-	Framework::Renderer::CreateRenderer(&currentRenderer, Framework::Renderer::DirectX11);
+	Framework::Renderer::DeleteRenderer(&currentRenderer);
 	printf("c");
+	Framework::Renderer::CreateRenderer(&currentRenderer, Framework::Renderer::Types::DirectX11);
+	printf("d");
+	Framework::Renderer::DeleteRenderer(&currentRenderer);
+	printf("e");
 }

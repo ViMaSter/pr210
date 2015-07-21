@@ -1,13 +1,21 @@
 #pragma once
 
-#include "Renderer.h"
+#include "IRenderer.h"
 
 namespace Framework {
-	class DX11Renderer : public Renderer {
-		DX11Renderer();
-		~DX11Renderer();
+	namespace Renderer {
+		namespace DX11Renderer {
+			class Renderer : public IRenderer {
+			public:
+				Renderer();
+				~Renderer();
 
-		virtual void Begin(int ClearColor); // Pre draw
-		virtual void End(); // = Draw() + Present()
-	};
+				virtual void Begin(int ClearColor); // Pre draw
+				virtual void End(); // = Draw() + Present()
+			};
+
+			IRenderer* CreateRenderer(IRenderer** destination);
+			void DeleteRenderer(IRenderer** origin);
+		}
+	}
 }
