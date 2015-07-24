@@ -11,9 +11,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Private\Application.cpp" />
     <ClCompile Include="Source\Private\IRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Public\Application.h" />
+    <ClInclude Include="Source\Public\IGame.h" />
     <ClInclude Include="Source\Public\IRenderer.h" />
     <ClInclude Include="Source\Public\RendererTypes.h" />
   </ItemGroup>

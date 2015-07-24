@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Windows.h"
+
 #include "RendererTypes.h"
 
 namespace Framework {
@@ -15,12 +17,13 @@ namespace Framework {
 			virtual void End() = 0; // = Draw() + Present()
 
 			Types CurrentRendererType;
+			HWND* WindowPointer;
 		};
 
 		typedef IRenderer* (*Create)(IRenderer**);
 		typedef void* (*Delete)(IRenderer**);
 
-		void CreateRenderer(IRenderer** destination, Renderer::Types types);
+		void CreateRenderer(HWND** windowPointer, IRenderer** destination, Renderer::Types types);
 		void DeleteRenderer(IRenderer** destination);
 	}
 }

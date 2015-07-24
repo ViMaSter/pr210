@@ -4,7 +4,7 @@
 
 namespace Framework {
 	namespace Renderer {
-		void CreateRenderer(IRenderer** destination, Renderer::Types types) {
+		void CreateRenderer(HWND** windowPointer, IRenderer** destination, Renderer::Types types) {
 			HMODULE graphicsModule = 0;
 			Framework::Renderer::Create createFuncPtr;
 
@@ -22,6 +22,8 @@ namespace Framework {
 				createFuncPtr(destination);
 				break;
 			}
+
+			(*destination)->WindowPointer = *windowPointer;
 		}
 
 		void DeleteRenderer(IRenderer** destination) {

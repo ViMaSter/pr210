@@ -7,18 +7,17 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PR210_3DEngine", "Projects\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Framework.Core", "Projects\Framework.Core\Framework.Core.vcxproj", "{3DF798CB-6373-4E0F-8620-FA959C6D2C2F}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Application", "Projects\Application\Application.vcxproj", "{F07545FA-0EA8-4FD5-AC7E-8789E7634EA3}"
-	ProjectSection(ProjectDependencies) = postProject
-		{1FCB4597-E2D1-4866-8AD4-34590480E29A} = {1FCB4597-E2D1-4866-8AD4-34590480E29A}
-		{3DF798CB-6373-4E0F-8620-FA959C6D2C2F} = {3DF798CB-6373-4E0F-8620-FA959C6D2C2F}
-	EndProjectSection
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Framework.Renderer.DX11Renderer", "Projects\Framework.Renderer.DX11Renderer\Framework.Renderer.DX11Renderer.vcxproj", "{1FCB4597-E2D1-4866-8AD4-34590480E29A}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3DF798CB-6373-4E0F-8620-FA959C6D2C2F} = {3DF798CB-6373-4E0F-8620-FA959C6D2C2F}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Framework.Renderer.DX10Renderer", "Projects\Framework.Renderer.DX10Renderer\Framework.Renderer.DX10Renderer.vcxproj", "{98E49032-E51A-4A99-AB68-98F69597BCC6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3DF798CB-6373-4E0F-8620-FA959C6D2C2F} = {3DF798CB-6373-4E0F-8620-FA959C6D2C2F}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Game", "Projects\Game\Game.vcxproj", "{D9E988AF-72AA-40AB-9144-47A4DF61D282}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3DF798CB-6373-4E0F-8620-FA959C6D2C2F} = {3DF798CB-6373-4E0F-8620-FA959C6D2C2F}
 	EndProjectSection
@@ -37,10 +36,6 @@ Global
 		{3DF798CB-6373-4E0F-8620-FA959C6D2C2F}.Debug|Win32.Build.0 = Debug|Win32
 		{3DF798CB-6373-4E0F-8620-FA959C6D2C2F}.Release|Win32.ActiveCfg = Release|Win32
 		{3DF798CB-6373-4E0F-8620-FA959C6D2C2F}.Release|Win32.Build.0 = Release|Win32
-		{F07545FA-0EA8-4FD5-AC7E-8789E7634EA3}.Debug|Win32.ActiveCfg = Debug|Win32
-		{F07545FA-0EA8-4FD5-AC7E-8789E7634EA3}.Debug|Win32.Build.0 = Debug|Win32
-		{F07545FA-0EA8-4FD5-AC7E-8789E7634EA3}.Release|Win32.ActiveCfg = Release|Win32
-		{F07545FA-0EA8-4FD5-AC7E-8789E7634EA3}.Release|Win32.Build.0 = Release|Win32
 		{1FCB4597-E2D1-4866-8AD4-34590480E29A}.Debug|Win32.ActiveCfg = Debug|Win32
 		{1FCB4597-E2D1-4866-8AD4-34590480E29A}.Debug|Win32.Build.0 = Debug|Win32
 		{1FCB4597-E2D1-4866-8AD4-34590480E29A}.Release|Win32.ActiveCfg = Release|Win32
@@ -49,6 +44,10 @@ Global
 		{98E49032-E51A-4A99-AB68-98F69597BCC6}.Debug|Win32.Build.0 = Debug|Win32
 		{98E49032-E51A-4A99-AB68-98F69597BCC6}.Release|Win32.ActiveCfg = Release|Win32
 		{98E49032-E51A-4A99-AB68-98F69597BCC6}.Release|Win32.Build.0 = Release|Win32
+		{D9E988AF-72AA-40AB-9144-47A4DF61D282}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D9E988AF-72AA-40AB-9144-47A4DF61D282}.Debug|Win32.Build.0 = Debug|Win32
+		{D9E988AF-72AA-40AB-9144-47A4DF61D282}.Release|Win32.ActiveCfg = Release|Win32
+		{D9E988AF-72AA-40AB-9144-47A4DF61D282}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <stdio.h>
+
 #include "IRenderer.h"
 
 namespace Framework {
@@ -15,10 +17,12 @@ namespace Framework {
 				}
 
 				virtual void Begin(int ClearColor) {
-					// Pre draw
+					// Post PreDraw - PreUpdate
+					printf("X11 Begin: ");
 				}
 				virtual void End() {
-					// = Draw() + Present()
+					// Pre Update - Pre PostDraw
+					printf("X11 End: ");
 				}
 			};
 
