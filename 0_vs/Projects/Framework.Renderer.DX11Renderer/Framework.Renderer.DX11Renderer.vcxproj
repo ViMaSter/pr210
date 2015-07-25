@@ -58,7 +58,6 @@
     <Import Project="..\..\Properties\DirectX_x86.props" />
     <Import Project="..\..\Properties\WindowsSDK.props" />
     <Import Project="..\Framework.Core\Properties\Framework.props" />
-    <Import Project="..\..\Properties\tmp.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
