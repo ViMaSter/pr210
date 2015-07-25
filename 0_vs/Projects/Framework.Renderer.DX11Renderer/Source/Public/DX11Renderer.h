@@ -44,8 +44,8 @@ namespace Framework {
 				virtual void AddVertex(SVertex v);
 			};
 
-			IRenderer* __declspec(dllexport) CreateRenderer(IRenderer** destination);
-			void __declspec(dllexport) DeleteRenderer(IRenderer** origin);
+			IRenderer* CreateRenderer(IRenderer** destination);
+			void DeleteRenderer(IRenderer** origin);
 		}
 	}
 }
