@@ -1,8 +1,8 @@
 #include "Application.h"
 
 namespace Framework {
-	Application::Application(IGame* game) {
-		Game = game;
+	Application::Application(IGame** game) {
+		Game = *game;
 
 		Framework::Renderer::CreateRenderer(&Game->WindowHandle, &(Game->CurrentRenderer), Game->RendererType);
 	}
