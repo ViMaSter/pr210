@@ -7,7 +7,7 @@
 namespace Framework {
 	class Application {
 	public:
-		IGame* Game;
+		IGame* Game = 0;
 
 		void Main();
 
