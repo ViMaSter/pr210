@@ -168,7 +168,7 @@ bool DirectX10Renderer::Render() {
 
 	this->device->IASetPrimitiveTopology(D3D10_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
 
-	this->device->Draw(4, 0);
+	this->device->Draw(0, 0);
 
 	this->swapChain->Present(0, 0);
 	return true;

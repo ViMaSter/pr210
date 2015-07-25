@@ -28,5 +28,6 @@
     <None Include="Resources\Definitions.def">
       <Filter>Source Files</Filter>
     </None>
+    <None Include="Resources\Shader\Shaders.shader" />
   </ItemGroup>
 </Project>

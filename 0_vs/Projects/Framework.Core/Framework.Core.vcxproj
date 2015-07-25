@@ -21,6 +21,9 @@
     <ClInclude Include="Source\Public\IRenderer.h" />
     <ClInclude Include="Source\Public\RendererTypes.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Shader\Shaders.shader" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{3DF798CB-6373-4E0F-8620-FA959C6D2C2F}</ProjectGuid>
     <RootNamespace>Framework</RootNamespace>
@@ -48,7 +51,6 @@
     <Import Project="..\..\Properties\PublicHeader.props" />
     <Import Project="..\..\Properties\Intermediate.props" />
     <Import Project="..\..\Properties\Build.props" />
-    <Import Project="..\..\Properties\DirectX_x86.props" />
     <Import Project="..\..\Properties\WindowsSDK.props" />
     <Import Project="Properties\Framework_Debug.props" />
   </ImportGroup>
@@ -57,7 +59,6 @@
     <Import Project="..\..\Properties\PublicHeader.props" />
     <Import Project="..\..\Properties\Intermediate.props" />
     <Import Project="..\..\Properties\Build.props" />
-    <Import Project="..\..\Properties\DirectX_x86.props" />
     <Import Project="..\..\Properties\WindowsSDK.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />

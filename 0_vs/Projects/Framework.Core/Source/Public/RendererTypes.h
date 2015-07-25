@@ -33,6 +33,19 @@ namespace Framework {
 				A = a;
 			}
 
+			SColor(int value) {
+				int temp = 0;
+
+				temp = (value >> 24) & 0xff;
+				R = (float)temp;
+				temp = (value >> 16) & 0xff;
+				B = (float)temp;
+				temp = (value >> 8) & 0xff;
+				G = (float)temp;
+				temp = (value >> 0) & 0xff;
+				A = (float)temp;
+			}
+
 			operator int() {
 				int result = 0;
 				result ^= (int)(R * 255) << 6;

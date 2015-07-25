@@ -18,6 +18,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Definitions.def" />
+    <None Include="Resources\Shader\Shaders.shader" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{1FCB4597-E2D1-4866-8AD4-34590480E29A}</ProjectGuid>

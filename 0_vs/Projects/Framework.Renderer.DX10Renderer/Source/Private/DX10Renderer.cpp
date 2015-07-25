@@ -7,6 +7,17 @@
 namespace Framework {
 	namespace Renderer {
 		namespace DX10Renderer {
+			bool ErrorHandler(HRESULT result) {
+				if (result != S_OK) {
+					DWORD msg = GetLastError();
+#ifdef FRAMEWORK_DEBUG
+					std::cout << "Error id: " << msg << std::endl;
+#endif
+					return true;
+				}
+				return false;
+			}
+
 			class Renderer : public IRenderer {
 			public:
 				Renderer() {
@@ -16,22 +27,38 @@ namespace Framework {
 					
 				}
 
+				virtual void Init() {
+					// Post PreDraw - PreUpdate
+#ifdef FRAMEWORK_DEBUG
+					std::cout << "X10 Init" << std::endl;
+#endif
+				}
+
 				virtual void Begin(int ClearColor) {
 					// Post PreDraw - PreUpdate
 #ifdef FRAMEWORK_DEBUG
-					std::cout << "X11 Begin: " << std::endl;
+					std::cout << "X10 Begin" << std::endl;
 #endif
 				}
 				virtual void End() {
 					// Pre Update - Pre PostDraw
 #ifdef FRAMEWORK_DEBUG
-					std::cout << "X11 End: " << std::endl;
+					std::cout << "X10 End" << std::endl;
 #endif
+				}
+
+				void AddVertex(SVertex v) {
+					if (CurrentState == State::NOT_READY) {
+						CurrentState = State::VERTICES_ADDED;
+						Vertices.clear();
+					}
+
+					Vertices.push_back(v);
 				}
 			};
 
 			IRenderer* CreateRenderer(IRenderer** destination) {
-				*destination = new Renderer();
+				//*destination = new Renderer();
 
 				return *destination;
 			}

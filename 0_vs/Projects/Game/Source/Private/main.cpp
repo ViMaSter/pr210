@@ -65,10 +65,6 @@ LRESULT CALLBACK	WindowMessageProcedure(HWND, UINT, WPARAM, LPARAM);
 /// </summary>
 HINSTANCE InstanceHandle;
 /// <summary>
-/// Handle to this processes accelerator table
-/// </summary>
-HACCEL AcceleratorTableHandle;
-/// <summary>
 /// Handle to the main window
 /// </summary>
 HWND WindowHandle;
@@ -186,30 +182,39 @@ int APIENTRY WinMain(HINSTANCE instanceHandle, HINSTANCE previousInstanceHandle,
 	application = new Application((IGame*)game);
 #pragma endregion
 
-	/*
-	Renderer.AddVertex(SVertex(0.25f, 0.25f, 1.f, 1.0f, 0.0f, 0.0f, 1.f));
-	Renderer.AddVertex(SVertex(0.25f, 0.75f, 1.f, 0.0f, 0.0f, 1.0f, 1.f));
-	Renderer.AddVertex(SVertex(0.75f, 0.25f, 1.f, 0.0f, 1.0f, 0.0f, 1.f));
-	Renderer.AddVertex(SVertex(0.75f, 0.75f, 1.f, 1.0f, 1.0f, 1.0f, 1.f));
-	Renderer.Init(&hWnd);
-	Renderer.Render();
-	*/
-
-	AcceleratorTableHandle = LoadAccelerators(InstanceHandle, MAKEINTRESOURCE("PR210_3DENGINE"));
-
-	PostMessage(WindowHandle, WM_PAINT, 0, 0);
-
 	// Main message loop
 	MSG message;
-	while (GetMessage(&message, NULL, 0, 0)) {
-		if (!game->IsRunning) {
-			PostMessage(WindowHandle, WM_DESTROY, 0, 0);
-		}
 
-		if (!TranslateAccelerator(message.hwnd, AcceleratorTableHandle, &message)) {
+	while (game->IsRunning) {
+		if (PeekMessage(&message, NULL, 0, 0, PM_REMOVE)) {
 			TranslateMessage(&message);
 			DispatchMessage(&message);
 		}
+
+		switch (message.message) {
+		case WM_KEYDOWN:
+			switch (message.wParam) {
+			case VK_ESCAPE:
+				game->IsRunning = false;
+				break;
+			case 'F':
+				//SwitchRenderer(GraphicsModuleType::DirectX10);
+				break;
+			case 'G':
+				//SwitchRenderer(GraphicsModuleType::DirectX11);
+				break;
+			}
+			break;
+		case WM_QUIT:
+			if (message.message == WM_QUIT)
+				game->IsRunning = false;
+			break;
+		}
+
+			
+
+
+		application->Main();
 	}
 
 	// CLEAN UP HERE!

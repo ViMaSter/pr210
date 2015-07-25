@@ -24,6 +24,8 @@ namespace Framework {
 			}
 
 			(*destination)->WindowPointer = *windowPointer;
+
+			(*destination)->Init();
 		}
 
 		void DeleteRenderer(IRenderer** destination) {
