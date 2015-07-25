@@ -20,6 +20,10 @@ namespace Framework {
 					
 			}
 
+			Renderer::~Renderer() {
+
+			}
+
 			void Renderer::Init() {
 				CurrentRendererType = Framework::Renderer::Types::DirectX11;
 				// Set object state
@@ -153,9 +157,6 @@ namespace Framework {
 
 				Device->CreateInputLayout(InputElementDescription, 2, VS->GetBufferPointer(), VS->GetBufferSize(), &InputLayout);
 				DeviceContext->IASetInputLayout(InputLayout);
-			}
-			Renderer::~Renderer() {
-
 			}
 
 			void Renderer::Begin(int ClearColor) {

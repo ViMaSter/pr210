@@ -177,7 +177,7 @@ int APIENTRY WinMain(HINSTANCE instanceHandle, HINSTANCE previousInstanceHandle,
 
 	// INIT HERE!
 #pragma region Framework
-	game = new Game(&WindowHandle, 0x00c0ffFF, Framework::Renderer::Types::DirectX11);
+	game = new Game(&WindowHandle, 0x00c0ffFF, Framework::Renderer::Types::DirectX10);
 
 	application = new Application(&game);
 #pragma endregion
