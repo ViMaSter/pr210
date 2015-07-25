@@ -11,6 +11,7 @@ namespace Framework {
 
 		void Main();
 
+		Application();
 		Application(IGame** game);
 		~Application();
 	};

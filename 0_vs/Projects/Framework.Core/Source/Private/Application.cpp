@@ -2,7 +2,8 @@
 
 namespace Framework {
 	Application::Application(IGame** game) {
-		Game = *game;
+		// Activating the /02-compiler flag breaks this
+		Game = (IGame*)*game;
 
 		Framework::Renderer::CreateRenderer(&Game->WindowHandle, &(Game->CurrentRenderer), Game->RendererType);
 	}

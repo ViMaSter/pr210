@@ -11,7 +11,7 @@
 using namespace Framework;
 
 Application* application;
-Game* game;
+IGame* game;
 #pragma endregion
 
 #pragma region Debug helper
@@ -179,7 +179,7 @@ int APIENTRY WinMain(HINSTANCE instanceHandle, HINSTANCE previousInstanceHandle,
 #pragma region Framework
 	game = new Game(&WindowHandle, 0x00c0ffFF, Framework::Renderer::Types::DirectX11);
 
-	application = new Application((IGame**)&game);
+	application = new Application(&game);
 #pragma endregion
 
 	// Main message loop
