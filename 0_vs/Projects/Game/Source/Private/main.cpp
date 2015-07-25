@@ -125,21 +125,26 @@ LRESULT CALLBACK WindowMessageProcedure(HWND windowHandle, UINT message, WPARAM 
 		case WM_PAINT:
 			hdc = BeginPaint(windowHandle, &ps);
 
-			application->Main();
-
-			// @TODO: Run render loop
-
 			EndPaint(windowHandle, &ps);
-			InvalidateRect(windowHandle, NULL, TRUE);
 			break;
 		case WM_KEYDOWN:
 			switch (wParam) {
-			case 0x43:
-				PostMessage(WindowHandle, WM_QUIT, 0, 0);
+			case VK_ESCAPE:
+				game->IsRunning = false;
+				break;
+			case 'F':
+				application->SwitchRenderer(Framework::Renderer::Types::DirectX10);
+				break;
+			case 'G':
+				application->SwitchRenderer(Framework::Renderer::Types::DirectX11);
 				break;
 			}
 			break;
 		case WM_DESTROY:
+			game->IsRunning = false;
+			PostQuitMessage(0);
+			break;
+		case WM_QUIT:
 			game->IsRunning = false;
 			PostQuitMessage(0);
 			break;
@@ -189,26 +194,6 @@ int APIENTRY WinMain(HINSTANCE instanceHandle, HINSTANCE previousInstanceHandle,
 		if (PeekMessage(&message, NULL, 0, 0, PM_REMOVE)) {
 			TranslateMessage(&message);
 			DispatchMessage(&message);
-		}
-
-		switch (message.message) {
-		case WM_KEYDOWN:
-			switch (message.wParam) {
-			case VK_ESCAPE:
-				game->IsRunning = false;
-				break;
-			case 'F':
-				application->SwitchRenderer(Framework::Renderer::Types::DirectX10);
-				break;
-			case 'G':
-				application->SwitchRenderer(Framework::Renderer::Types::DirectX11);
-				break;
-			}
-			break;
-		case WM_QUIT:
-			if (message.message == WM_QUIT)
-				game->IsRunning = false;
-			break;
 		}
 
 		application->Main();
