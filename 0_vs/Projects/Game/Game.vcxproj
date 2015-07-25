@@ -11,7 +11,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Private\Game.cpp" />
     <ClCompile Include="Source\Private\main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\Public\Game.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{D9E988AF-72AA-40AB-9144-47A4DF61D282}</ProjectGuid>
@@ -40,6 +44,7 @@
     <Import Project="..\..\Properties\Intermediate.props" />
     <Import Project="..\Framework.Core\Properties\Build.props" />
     <Import Project="..\Framework.Core\Properties\Framework.props" />
+    <Import Project="..\Framework.Core\Properties\Framework_Debug.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -55,9 +60,11 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

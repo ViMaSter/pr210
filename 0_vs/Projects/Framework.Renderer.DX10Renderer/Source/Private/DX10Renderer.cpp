@@ -18,11 +18,15 @@ namespace Framework {
 
 				virtual void Begin(int ClearColor) {
 					// Post PreDraw - PreUpdate
-					printf("X10 Begin: ");
+#ifdef FRAMEWORK_DEBUG
+					std::cout << "X11 Begin: " << std::endl;
+#endif
 				}
 				virtual void End() {
 					// Pre Update - Pre PostDraw
-					printf("X10 End: ");
+#ifdef FRAMEWORK_DEBUG
+					std::cout << "X11 End: " << std::endl;
+#endif
 				}
 			};
 

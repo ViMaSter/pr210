@@ -16,6 +16,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Public\Application.h" />
+    <ClInclude Include="Source\Public\Common.h" />
     <ClInclude Include="Source\Public\IGame.h" />
     <ClInclude Include="Source\Public\IRenderer.h" />
     <ClInclude Include="Source\Public\RendererTypes.h" />
@@ -49,6 +50,7 @@
     <Import Project="..\..\Properties\Build.props" />
     <Import Project="..\..\Properties\DirectX_x86.props" />
     <Import Project="..\..\Properties\WindowsSDK.props" />
+    <Import Project="Properties\Framework_Debug.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />

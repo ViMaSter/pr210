@@ -11,7 +11,9 @@ DirectXRenderer::~DirectXRenderer() {
 }
 
 void DirectXRenderer::ErrorHandler(int ID) {
-	printf("Error id: %d", ID);
+#ifdef FRAMEWORK_DEBUG
+	std::cout << "Error id: " << ID << std::endl;
+#endif
 }
 
 bool DirectXRenderer::Init(HWND* windowPointer) {
