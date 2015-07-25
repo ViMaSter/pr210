@@ -1,5 +1,5 @@
-// Uncommenting the following line, will provide additional
-// log info in every version
+// Uncommenting the last line of this comment-block
+// will provide additional log to a additional console-window
 // 
 // Alternatively set this as a preprocessor definition
 // #define FRAMEWORK_DEBUG

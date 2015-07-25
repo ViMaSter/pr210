@@ -15,40 +15,30 @@ namespace Framework {
 		namespace DX10Renderer {
 			class Renderer : public IRenderer {
 			public:
-				// Dx data
-				/// @brief A pointer to the device ID3D10Device object.
-				///
-				ID3D10Device* device;
-
-				/// @brief A pointer to the backbuffer ID3D10RenderTargetView object.
-				///
-				ID3D10RenderTargetView* backBufferView;
-
-				/// @brief A pointer to the depth-stencil-buffer ID3D10DepthStencilView object.
-				///
-				ID3D10DepthStencilView* depthStencilBufferView;
-
-				/// @brief A pointer to the swap-chain IDXGISwapChain object.
-				///
-				IDXGISwapChain* swapChain;
+#pragma region Direct X-relevant data
+				// General data
+				ID3D10Device* Device;
+				ID3D10RenderTargetView* BackBufferView;
+				ID3D10DepthStencilView* DepthStencilBufferView;
+				IDXGISwapChain* SwapChain;
 				ID3D10InputLayout* InputLayout;
 
 				// Shader data
 				ID3D10VertexShader* VertexShader;
 				ID3D10PixelShader* PixelShader;
+				ID3D10Blob *VS, *PS;
 
-				void* MappedSubresource;
+				// Vertex buffer data
 				ID3D10Buffer* VertexBuffer;
-
-				// Custom data
-				int VSync = 0;
+				void* MappedSubresource;
+#pragma endregion
 
 				Renderer();
-				~Renderer();
+				virtual ~Renderer();
 
-				virtual void Init(); // Pre draw
-				virtual void Begin(int ClearColor); // Pre draw
-				virtual void End(); // = Draw() + Present()
+				virtual void Init();
+				virtual void Begin(int ClearColor);
+				virtual void End();
 				virtual void AddVertex(SVertex v);
 			};
 

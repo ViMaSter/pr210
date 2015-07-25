@@ -17,15 +17,51 @@ namespace Framework {
 			}
 
 			Renderer::Renderer() {
-					
+				CurrentRendererType = Framework::Renderer::Types::DirectX11;
 			}
 
 			Renderer::~Renderer() {
-
+				void* tmp = &Vertices[0];
+				std::vector<SVertex>().swap(Vertices);
+				if (Device != nullptr) {
+					Device->Release();
+					Device = nullptr;
+				}
+				if (DeviceContext != nullptr) {
+					DeviceContext->Release();
+					DeviceContext = nullptr;
+				}
+				if (BackBuffer != nullptr) {
+					BackBuffer->Release();
+					BackBuffer = nullptr;
+				}
+				if (BackBuffer != nullptr) {
+					BackBuffer->Release();
+					BackBuffer = nullptr;
+				}
+				if (SwapChain != nullptr) {
+					SwapChain->Release();
+					SwapChain = nullptr;
+				}
+				if (InputLayout != nullptr) {
+					InputLayout->Release();
+					InputLayout = nullptr;
+				}
+				if (VertexBuffer != nullptr) {
+					VertexBuffer->Release();
+					VertexBuffer = nullptr;
+				}
+				if (VS != nullptr) {
+					VS->Release();
+					VS = nullptr;
+				}
+				if (PS != nullptr) {
+					PS->Release();
+					PS = nullptr;
+				}
 			}
 
 			void Renderer::Init() {
-				CurrentRendererType = Framework::Renderer::Types::DirectX11;
 				// Set object state
 				CurrentState = State::INITIALIZED;
 
@@ -69,25 +105,23 @@ namespace Framework {
 					&DeviceContext
 				);
 
-				
-
 				// Get back buffer
-				tmpResult = SwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&pBackBuffer);
+				tmpResult = SwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&BackBuffer);
 				if (ErrorHandler(tmpResult)) {
 					return;
 				}
 
 				tmpResult = Device->CreateRenderTargetView(
-					pBackBuffer,
+					BackBuffer,
 					NULL,
-					&BackBuffer
+					&BackBufferRenderTarget
 				);
 				if (ErrorHandler(tmpResult)) {
 					return;
 				}
 
 				// Release back buffer
-				pBackBuffer->Release();
+				BackBuffer->Release();
 
 				// Set viewport size
 				Viewport.TopLeftX = 0;
@@ -100,10 +134,11 @@ namespace Framework {
 					return;
 				}
 
-				AddVertex(SVertex(0.25f, 0.25f, 1.f, 1.0f, 0.0f, 0.0f, 1.f));
-				AddVertex(SVertex(0.25f, 0.75f, 1.f, 0.0f, 0.0f, 1.0f, 1.f));
-				AddVertex(SVertex(0.75f, 0.25f, 1.f, 0.0f, 1.0f, 0.0f, 1.f));
-				AddVertex(SVertex(0.75f, 0.75f, 1.f, 1.0f, 1.0f, 1.0f, 1.f));
+				// Fill in sample-values for easier debugging
+				AddVertex(Framework::Renderer::SVertex(0.25f, 0.25f, 1.f, 0.0f, 0.0f, 0.0f, 1.f));
+				AddVertex(Framework::Renderer::SVertex(0.25f, 0.75f, 1.f, 0.0f, 0.0f, 0.0f, 1.f));
+				AddVertex(Framework::Renderer::SVertex(0.75f, 0.25f, 1.f, 0.0f, 0.0f, 0.0f, 1.f));
+				AddVertex(Framework::Renderer::SVertex(0.75f, 0.75f, 1.f, 0.0f, 0.0f, 0.0f, 1.f));
 
 				// Create vertex buffer
 				// Fill in a buffer description.
@@ -128,8 +163,6 @@ namespace Framework {
 
 				// Set up shader
 				// load and compile the two shaders
-
-				ID3D10Blob *VS, *PS;
 				D3DX11CompileFromFile("Resources\\Shader\\Shaders.shader", 0, 0, "VShader", "vs_4_0", D3DCOMPILE_DEBUG, 0, 0, &VS, 0, 0);
 				D3DX11CompileFromFile("Resources\\Shader\\Shaders.shader", 0, 0, "PShader", "ps_4_0", D3DCOMPILE_DEBUG, 0, 0, &PS, 0, 0);
 
@@ -163,28 +196,24 @@ namespace Framework {
 				HRESULT tmpResult;
 				DWORD msg = GetLastError();
 
-				// @TODO: Convert int to float
+				// Ready up for draw calls
+				DeviceContext->ClearRenderTargetView(BackBufferRenderTarget, (const float*)&(SColor(ClearColor)));
 
-				// draw the vertex buffer to the back buffer
-				DeviceContext->ClearRenderTargetView(BackBuffer, (const float*)&(SColor(ClearColor)));
-
-				DeviceContext->OMSetRenderTargets(1, &BackBuffer, nullptr);
+				DeviceContext->OMSetRenderTargets(1, &BackBufferRenderTarget, nullptr);
 
 				const UINT offset = 0;
 				const UINT stride = sizeof(SVertex);
 
 				DeviceContext->IASetVertexBuffers(0, 1, &VertexBuffer, &stride, &offset);
 
-				DeviceContext->IASetPrimitiveTopology(D3D10_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
-
 				// select which primtive type we are using
+				DeviceContext->IASetPrimitiveTopology(D3D10_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
 
 				// copy the vertices into the buffer
 				tmpResult = DeviceContext->Map(VertexBuffer, NULL, D3D11_MAP_WRITE_DISCARD, NULL, &MappedSubresource);    // map the buffer
 				if (ErrorHandler(tmpResult)) {
 					return;
 				}
-				// Post PreDraw - PreUpdate
 #ifdef FRAMEWORK_DEBUG
 				std::cout << "X11 Begin" << std::endl;
 #endif
@@ -199,12 +228,12 @@ namespace Framework {
 				// draw vertices
 				DeviceContext->Draw(Vertices.size(), 0);
 
+				// present screen
 				tmpResult = SwapChain->Present(VSync, 0);
 				if (ErrorHandler(tmpResult)) {
 					return;
 				}
 
-				// Pre Update - Pre PostDraw
 #ifdef FRAMEWORK_DEBUG
 				std::cout << "X11 End" << std::endl;
 #endif

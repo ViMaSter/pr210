@@ -6,6 +6,9 @@
 
 using namespace Framework;
 
+/// <summary>
+/// Example class to demonstrate custom-code injection
+/// </summary>
 class Game : public IGame {
 public:
 	virtual void PreRender();

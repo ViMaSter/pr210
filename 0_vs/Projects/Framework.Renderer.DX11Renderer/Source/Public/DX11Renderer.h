@@ -15,11 +15,12 @@ namespace Framework {
 		namespace DX11Renderer {
 			class Renderer : public IRenderer {
 			public:
-				// Dx data
+#pragma region Direct X-relevant data
+				// General data
 				ID3D11Device* Device;
 				ID3D11DeviceContext* DeviceContext;
-				ID3D11Texture2D* pBackBuffer;
-				ID3D11RenderTargetView* BackBuffer;
+				ID3D11Texture2D* BackBuffer;
+				ID3D11RenderTargetView* BackBufferRenderTarget;
 				IDXGISwapChain* SwapChain;
 				ID3D11InputLayout* InputLayout;
 				D3D11_VIEWPORT Viewport;
@@ -28,19 +29,19 @@ namespace Framework {
 				// Shader data
 				ID3D11VertexShader* VertexShader;
 				ID3D11PixelShader* PixelShader;
+				ID3D10Blob *VS, *PS;
 
-				D3D11_MAPPED_SUBRESOURCE MappedSubresource;
+				// Vertex buffer data
 				ID3D11Buffer* VertexBuffer;
-
-				// Custom data
-				int VSync = 0;
+				D3D11_MAPPED_SUBRESOURCE MappedSubresource;
+#pragma endregion
 
 				Renderer();
-				~Renderer();
+				virtual ~Renderer();
 
-				virtual void Init(); // Pre draw
-				virtual void Begin(int ClearColor); // Pre draw
-				virtual void End(); // = Draw() + Present()
+				virtual void Init();
+				virtual void Begin(int ClearColor);
+				virtual void End();
 				virtual void AddVertex(SVertex v);
 			};
 

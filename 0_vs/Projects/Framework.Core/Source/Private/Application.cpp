@@ -9,7 +9,13 @@ namespace Framework {
 	}
 
 	Application::~Application() {
+		delete Game;
+	}
 
+	void Application::SwitchRenderer(Framework::Renderer::Types newType) {
+		Framework::Renderer::DeleteRenderer(&(Game->CurrentRenderer));
+
+		Framework::Renderer::CreateRenderer(&Game->WindowHandle, &(Game->CurrentRenderer), newType);
 	}
 
 	void Application::Main() {

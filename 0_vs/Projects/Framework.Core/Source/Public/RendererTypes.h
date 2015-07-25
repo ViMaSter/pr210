@@ -3,7 +3,9 @@
 namespace Framework {
 	namespace Renderer {
 #pragma region Position
-		typedef float TPosition[3];
+		/// <summary>
+		/// Helper struct for three-dimensional position values
+		/// </summary>
 		struct SPosition {
 			float X;
 			float Y;
@@ -18,8 +20,9 @@ namespace Framework {
 #pragma endregion
 
 #pragma region Color
-		typedef float TColor[4];
-		/// Color ranges from 0.0f to 1.0f
+		/// <summary>
+		/// Helper struct for color values
+		/// </summary>
 		struct SColor {
 			float R;
 			float G;
@@ -58,6 +61,9 @@ namespace Framework {
 #pragma endregion
 
 #pragma region Vertex
+		/// <summary>
+		/// Helper struct for vertex data
+		/// </summary>
 		struct SVertex {
 			SPosition Position;
 			SColor Color;
@@ -69,6 +75,9 @@ namespace Framework {
 		};
 #pragma endregion
 
+		/// <summary>
+		/// States used by the renderer to communicate their status
+		/// </summary>
 		enum State {
 			NOT_READY,
 			INITIALIZED,

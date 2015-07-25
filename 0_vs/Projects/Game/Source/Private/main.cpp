@@ -198,10 +198,10 @@ int APIENTRY WinMain(HINSTANCE instanceHandle, HINSTANCE previousInstanceHandle,
 				game->IsRunning = false;
 				break;
 			case 'F':
-				//SwitchRenderer(GraphicsModuleType::DirectX10);
+				application->SwitchRenderer(Framework::Renderer::Types::DirectX10);
 				break;
 			case 'G':
-				//SwitchRenderer(GraphicsModuleType::DirectX11);
+				application->SwitchRenderer(Framework::Renderer::Types::DirectX11);
 				break;
 			}
 			break;
@@ -210,9 +210,6 @@ int APIENTRY WinMain(HINSTANCE instanceHandle, HINSTANCE previousInstanceHandle,
 				game->IsRunning = false;
 			break;
 		}
-
-			
-
 
 		application->Main();
 	}
